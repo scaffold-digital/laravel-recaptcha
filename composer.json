@@ -1,0 +1,40 @@
+{
+    "name": "scaffold/laravel-recaptcha",
+    "description": "Google Recaptcha module for Laravel",
+    "version": "0.0.1",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Rob Sinton",
+            "email": "rob@scaffold.digital"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "illuminate/support": "~5.5"
+    },
+	"require-dev": {
+        "phpunit/phpunit": "^6",
+        "orchestra/testbench": "~3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Scaffold\\Recaptcha\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Scaffold\\Recaptcha\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Scaffold\\Recaptcha\\RecaptchaServiceProvider"
+            ]
+        }
+    }
+}
