@@ -33,7 +33,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Scaffold\\Recaptcha\\RecaptchaServiceProvider"
+                "Scaffold\\Recaptcha\\Providers\\RecaptchaServiceProvider"
             ]
         }
     }
