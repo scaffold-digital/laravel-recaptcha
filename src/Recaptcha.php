@@ -34,6 +34,29 @@ class Recaptcha {
         return sprintf('<div class="g-recaptcha" data-sitekey="%s"></div>', $this->key);
     }
 
+    protected function post($url, $data = [])
+    {
+        $content = http_build_query($data);
+
+        $headers = [
+            'Content-Type: application/x-www-form-urlencoded',
+            'Content-Length: ' . strlen($content)
+        ];
+
+        $options = [
+            'http' => [
+                'header' => implode("\r\n", $headers),
+                'method' => 'POST',
+                'content' => http_build_query($data)
+            ]
+        ];
+
+        $context = stream_context_create($options);
+        $response = file_get_contents($url, false, $context);
+
+        return json_decode($response);
+    }
+
     public function setKey($key)
     {
         $this->key = $key;

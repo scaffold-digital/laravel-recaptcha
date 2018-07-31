@@ -2,6 +2,7 @@
 
 namespace Scaffold\Recaptcha\Providers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,9 +15,23 @@ class RecaptchaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'recaptcha');
+
         $this->publishes([
             __DIR__ . '/../../config/recaptcha.php' => config_path('recaptcha.php'),
         ], 'config');
+
+        $this->publishes([
+            __DIR__.'/path/to/translations' => resource_path('lang/vendor/courier'),
+        ]);
+
+        $config = config('recaptcha.validator');
+
+        Validator::extendImplicit(
+            $config['name'],
+            $config['class'] . '@validate',
+            trans('recaptcha::validation.recaptcha')
+        );
     }
 
     /**

@@ -15,4 +15,13 @@ return [
      * enter the path for your derrived class here.
      */
     'class' => '\Scaffold\Recaptcha\Recaptcha',
+
+    /**
+     * The validator to use. If you'd like to extend this class,
+     * enter the path for your derrived class instead.
+     */
+    'validator' => [
+        'class' => '\Scaffold\Recaptcha\Validators\RecaptchaValidator',
+        'name' => 'recaptcha',
+    ]
 ];

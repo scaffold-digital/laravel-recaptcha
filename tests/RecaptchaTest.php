@@ -85,4 +85,16 @@ class RecaptchaTest extends TestCase {
         $this->assertEquals($recaptcha->getSecret(), $secret);
     }
 
+    public function testVerifyMethod()
+    {
+        $secret = str_random(40);
+
+        $recaptcha = new Recaptcha();
+        $this->assertFalse($recaptcha->verify($secret));
+
+        $recaptcha->setKey($this->testKey);
+        $recaptcha->setSecret($this->testSecret);
+        $this->assertTrue($recaptcha->verify($secret));
+    }
+
 }
