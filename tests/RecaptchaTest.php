@@ -97,4 +97,13 @@ class RecaptchaTest extends TestCase {
         $this->assertTrue($recaptcha->verify($secret));
     }
 
+    public function testSingleton()
+    {
+        $recaptcha = recaptcha();
+        $config = config('recaptcha');
+
+        $this->assertEquals($config['key'], $recaptcha->getKey());
+        $this->assertEquals($config['secret'], $recaptcha->getSecret());
+    }
+
 }

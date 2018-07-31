@@ -45,13 +45,18 @@ class RecaptchaServiceProvider extends ServiceProvider
             __DIR__ . '/../../config/recaptcha.php', 'recaptcha'
         );
 
-        $class = config('recaptcha.class');
+        $config = config('recaptcha');
 
-        $this->app->singleton($class, function () use ($class) {
-            return new $class();
+        $this->app->singleton($config['class'], function () use ($config) {
+            $instance = new $config['class']();
+
+            $instance->setKey($config['key']);
+            $instance->setSecret($config['secret']);
+
+            return $instance;
         });
 
-        $this->app->alias($class, 'recaptcha');
+        $this->app->alias($config['class'], 'recaptcha');
 
         $aliasLoader = AliasLoader::getInstance();
         $aliasLoader->alias('Recaptcha', 'Scaffold\Recaptcha\Facades\Recaptcha');
