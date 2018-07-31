@@ -22,8 +22,8 @@ class RecaptchaServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->publishes([
-            __DIR__.'/path/to/translations' => resource_path('lang/vendor/courier'),
-        ]);
+            __DIR__ . '/../../lang' => resource_path('lang/vendor/recaptcha'),
+        ], 'lang');
 
         $config = config('recaptcha.validator');
 
